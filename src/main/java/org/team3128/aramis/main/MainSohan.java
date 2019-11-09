@@ -83,7 +83,7 @@
 
             testMotor = new TalonSRX(11);
             SRXTankDrive.initialize(leftDriveLeader, rightDriveLeader, wheelCirc, wheelBase, robotFreeSpeed);
-
+            tankDrive = SRXTankDrive.getInstance();
 
             joystick = new Joystick(1);
             lm = new ListenerManager(joystick);
@@ -137,11 +137,12 @@
     
         @Override
         protected void updateDashboard() {
-    
+
         }
+        
     
     
-        public static void main(String... args) {
-            RobotBase.startRobot(MainButton::new);
+        public static void main(String[] args) {
+            RobotBase.startRobot(MainSohan::new);
         }
     }
