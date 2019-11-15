@@ -59,13 +59,18 @@
     
     //start typing the stuff to make this a robot that isn't non-functional and bad and blank and boring and stuff thanks lol
         // - Mason Holst, "Helpful Reminders", published November 2019
+
+    //This code was made in association with the Starbucks' Developer Crew (TM).
     
     public class MainSohan extends NarwhalRobot {
     
-        TalonSRX testMotor;
+        //TalonSRX testMotor;
 
         TalonSRX leftDriveLeader;
         TalonSRX rightDriveLeader;
+        VictorSPX rightDriveFollower;
+        VictorSPX leftDriveFollower;
+
         ListenerManager lm;
         Joystick joystick;
         SRXTankDrive tankDrive;
@@ -78,10 +83,15 @@
             double wheelBase = 32.3 * Length.in;
             int robotFreeSpeed = 3700;
 
-            leftDriveLeader = new TalonSRX(15);
+            leftDriveLeader = new TalonSRX(13);
             rightDriveLeader = new TalonSRX(10);
+            leftDriveFollower = new VictorSPX(15);
+            rightDriveFollower = new VictorSPX(6);
 
-            testMotor = new TalonSRX(11);
+            rightDriveFollower.set(ControlMode.Follower, rightDriveLeader.getDeviceID());
+            leftDriveFollower.set(ControlMode.Follower, leftDriveLeader.getDeviceID());
+
+            //testMotor = new TalonSRX(11);
             SRXTankDrive.initialize(leftDriveLeader, rightDriveLeader, wheelCirc, wheelBase, robotFreeSpeed);
             tankDrive = SRXTankDrive.getInstance();
 
@@ -114,7 +124,7 @@
         }, "MoveTurn", "MoveForwards", "Throttle");
 
         //Button Controls and Listeners
-            lm.nameControl(new Button(11), "moveForward");
+            /*lm.nameControl(new Button(11), "moveForward");
             lm.addButtonDownListener("moveForward", () -> {
                 testMotor.set(ControlMode.PercentOutput, 100);
             });
@@ -128,7 +138,7 @@
             });
             lm.addButtonUpListener("moveBack", () -> {
                 testMotor.set(ControlMode.PercentOutput, 0);
-            });
+            });*/
         }
     
         @Override
